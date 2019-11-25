@@ -6,16 +6,23 @@
   <body>
     <header><h1>Form</h1></header>
     <main>
+      <form action="/search" method="POST">
+        
             <p><a href="/show">List of book</a></p>
             <!-- <p><a href="/books">search for a Books</a></p> -->
         <label>
-          <span>Author name</span>
-          <input name="name" />
+          
+          <input name="name" placeholder="Enter a title or author"/>
         </label>
+
         <label>
-          <span>Book name</span>
-          <input type="book" name="searchResult" />
+      
+          
+          <input type="radio" name="select" value="Author"> Author<br>
+          <input type="radio" name="select" value="Title"> Title<br>
+
         </label>
+
         <button>search</button>
       </form>
     </main>
