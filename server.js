@@ -72,7 +72,7 @@ app.post('/add',(request,response)=>{
     client.query(SQL,values)
     .then(results => {
       console.log('results2 : ', results.rows);
-      response.render('pages/index',{data:results.rows});
+      response.redirect('/');
     })
 
     // .catch((error)=>errorHandler(error))
