@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Document</title>
+</head>
+<body>
+    <header><h1>books:</h1></header>
+    
+        <%  data.forEach((val)=>{ %>
+           <div> <ul>
+           <li> <%= val.title %> </li>
+           <li> <%= val.authors %> </li>
+           <li> <%= val.isbn %> </li>
+           <li><img src="<%= val.url %>"> </li>
+           <li> <%= val.description %> </li>
+        </ul></div>
+       <% })    %>
+
+    
+</body>
+</html>
