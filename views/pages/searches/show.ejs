@@ -1,36 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    
+
     <title>Document</title>
 </head>
+
 <body>
-    <header><h1>books:</h1></header>
-    
-        <%  data.forEach((val)=>{ %>
-           <div> <ul>
-           <li> <%= val.title %> </li>
-           <li> <%= val.authors %> </li>
-           <li> <%= val.isbn %> </li>
-           <li><img src="<%= val.url %>"> </li>
-           <li> <%= val.description %> </li>
-           
-        </ul></div>
-       <% })    %>
+    <header>
+        <h1>books:</h1>
+    </header>
+
+    <%  data.forEach((val)=>{ %>
+    <div>
+        <ul>
+            <li> <%= val.title %> </li>
+            <li> <%= val.authors %> </li>
+            <li> <%= val.isbn %> </li>
+            <li><img src="<%= val.url %>"> </li>
+            <li> <%= val.description %> </li>
+            <li>
+                <form action="/selectForm" method="POST">
+                    <button>SELECT THIS BOOK</button>
+                    <input type="text" name="title" value=<%= val.title %>>
+                    <input type="text" name="authors" value=<%= val.authors %>>
+                    <input type="text" name="isbn" value=<%= val.isbn %>>
+                    <input type="text" name="imgURL" value=<%= val.url %>>
+                    <input type="text" name="description" value=<%= val.description %>>
+                </form>     
+            </li>
+
+        </ul>
+    </div>
+    <% })    %>
 
 
-<form action="/add" method="post">
- 
- title <input type="text" name="title">
- authors<input type="text" name="authors">
- isbn <input type="text" name="isbn"> 
- url <input type="text" name="url"> 
- description<input type="text" name="description"> 
+    <form action="/add" method="post">
 
+        <div>
+            <label>Title</label>
+            <input type="text" name="title">
+        </div>
+        <div>
+            <label>Authors</label>
+            <input type="text" name="authors">
+        </div>
+        <div>
+            <label>ISBN</label>
+            <input type="text" name="isbn">
+        </div>
+        <div>
+            <label>URL</label>
+            <input type="text" name="url">
+        </div>
+        <div>
+            <label>Description</label>
+            <input type="text" name="description">
+        </div>
 
-<button >ADD</button>
+        <button>ADD</button>
 
-</form>
-    
+    </form>
+
 </body>
+
 </html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>Add to Database</h1>
+    </header>
+    <div>
+
+    <form action="/add" method="post">
+        <div>
+            <label>Title</label>
+            <input type="text" name="title" value=<%- book.title %>>
+        </div>
+        <div>
+            <label>Authors</label>
+            <input type="text" name="authors" value=<%- book.authors %>>
+        </div>
+        <div>
+            <label>ISBN</label>
+            <input type="text" name="isbn" value=<%- book.isbn %>>
+        </div>
+        <div>
+            <label>URL</label>
+            <input type="text" name="url" value=<%- book.imgURL %>>
+        </div>
+        <div>
+            <label>Description</label>
+            <input type="text" name="description" value=<%- book.description %>>
+        </div>
+
+        <button>ADD</button>
+
+    </form>
+
+</body>
+
+</html>
