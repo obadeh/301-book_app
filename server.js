@@ -17,7 +17,13 @@ app.set('view engine' ,'ejs')
 const client = new pg.Client(process.env.DATABASE_URL);
 client.on('error', err => { throw err; });
 
+
+
+
 // routes 
+
+
+app.post('/selectForm', showSelectedBook);
 
 app.get('/', (request,response) => {
   
@@ -78,6 +84,12 @@ app.post('/add',(request,response)=>{
     // .catch((error)=>errorHandler(error))
 })
 
+
+function showSelectedBook(request, response){
+  let {title, authors, isbn, imgURL, description} = request.body;
+  console.log('\n\n\n\n\n\n\n',title, authors, isbn, imgURL, description);
+  response.render('pages/selectedBook', {book:request.body})
+}
 
 
 function Book(data){
