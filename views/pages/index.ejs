@@ -4,27 +4,27 @@
   <link rel="stylesheet" href="/public/styles/base.css">
   </head>
   <body>
-    <header><h1>Form</h1></header>
-    <main>
-      <form action="/search" method="post">
-        
-            <p><a href="/show">List of book</a></p>
-            <!-- <p><a href="/books">search for a Books</a></p> -->
-        <label>
-          
-          <input name="name" placeholder="Enter a title or author"/>
-        </label>
+    <header><h1>list of saved books</h1>
+    <div><a href="/search"> Search</a></div>
 
-        <label>
-      
-          
-          <input type="radio" name="select" value="author"> Author<br>
-          <input type="radio" name="select" value="title"> Title<br>
+    </header>
+ 
+  <main>
 
-        </label>
+    
+    
+    <%  data.forEach((val)=>{ %>
+       <div> <ul>
+       <li> <%= val.title %> </li>
+       <li> <%= val.authors %> </li>
+       <li> <%= val.isbn %> </li>
+       <li><img src="<%= val.url %>"> </li>
+       <li> <%= val.description %> </li>
+    </ul></div>
+   <% })    %>
 
-        <button>search</button>
-      </form>
+
+
     </main>
 
 </h1>

@@ -14,9 +14,23 @@
            <li> <%= val.isbn %> </li>
            <li><img src="<%= val.url %>"> </li>
            <li> <%= val.description %> </li>
+           
         </ul></div>
        <% })    %>
 
+
+<form action="/add" method="post">
+ 
+ title <input type="text" name="title">
+ authors<input type="text" name="authors">
+ isbn <input type="text" name="isbn"> 
+ url <input type="text" name="url"> 
+ description<input type="text" name="description"> 
+
+
+<button >ADD</button>
+
+</form>
     
 </body>
 </html>
