@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <header>details</header>
+        <div>
+
+
+                <ul class="data-item" data-id="<%= data.id %>">
+                    <li> <%= data.title %> </li>
+                    <li> <%= data.authors %> </li>
+                    <li> <%= data.isbn %> </li>
+                    <li><img src="<%= data.url %>"> </li>
+                    <li> <%= data.description %> </li>
+
+                </ul>
+                <div>
+              <form action="/update" method="GET"> 
+
+                <input type="hidden" name="title" value=<%= data.title %>>
+                <input type="hidden" name="authors" value=<%= data.authors %>>
+                <input type="hidden" name="isbn" value=<%= data.isbn %>>
+                <input type="hidden" name="imgURL" value=<%= data.url %>>
+                <input type="hidden" name="description" value=<%= data.description %>>
+                <button>update</button>
+               </div>
+
+            </form>
+                
+
+            </div>
+            
+</body>
+</html>
+ 

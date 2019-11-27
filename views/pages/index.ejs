@@ -20,7 +20,18 @@
        <li> <%= val.isbn %> </li>
        <li><img src="<%= val.url %>"> </li>
        <li> <%= val.description %> </li>
+       <a href="/books/<%= val.id%>">View Details</a>
     </ul></div>
+    <div>
+      <form action="/details" method="POST">
+        <button>SELECT THIS BOOK</button>
+                    <input type="hidden" name="title" value=<%= val.title %>>
+                    <input type="hidden" name="authors" value=<%= val.authors %>>
+                    <input type="hidden" name="isbn" value=<%= val.isbn %>>
+                    <input type="hidden" name="imgURL" value=<%= val.url %>>
+                    <input type="hidden" name="description" value=<%= val.description %>>
+      </form>
+    </div>
    <% })    %>
 
 

@@ -28,6 +28,25 @@ app.post('/add',addToDb)
 
 
 
+app.get('/books/:book_id', (request, response) =>{
+  let SQL = 'SELECT * FROM books WHERE id=$1;';
+  let values = [request.params.book_id];
+
+  return client.query(SQL, values)
+    .then(result => {
+      return response.render('pages/searches/details', {data: result.rows[0]});
+    })
+    // .catch(err => errorHandler(err, response));
+});
+
+// app.get('/update'(request,response)=>{
+
+//   req
+
+// })
+
+
+
 // functions handlers 
 
 function showFromDb(request,response){
@@ -35,7 +54,7 @@ function showFromDb(request,response){
   const SQL= 'SELECT * FROM books;'
   client.query(SQL)
     .then(results => {
-      console.log('results1 : ', results);
+      // console.log('results1 : ', results);
       response.render('pages/index',{data:results.rows})
     })
     .catch((error)=>errorHandler(error))
@@ -44,13 +63,13 @@ function showFromDb(request,response){
 
 function showSelectedBook(request, response){
   let {title, authors, isbn, imgURL, description} = request.body;
-  console.log('\n\n\n\n\n\n\n',title, authors, isbn, imgURL, description);
+  // console.log('\n\n\n\n\n\n\n',title, authors, isbn, imgURL, description);
   response.render('pages/selectedBook', {book:request.body})
 }
 
 
 function searchApi(request,response){
-  console.log(request.body.select)
+  // console.log(request.body.select)
   let url = 'https://www.googleapis.com/books/v1/volumes?q=';
   if(request.body.select === 'author') {url += `inauthor:${request.body.name}&maxResults=10`;}
   if(request.body.select === 'title') {url += `intitle:${request.body.name}&maxResults=10`;}
@@ -68,16 +87,16 @@ function searchApi(request,response){
 };
 
 function addToDb(request,response){
-  console.log('request.body : ', request.body);
+  // console.log('request.body : ', request.body);
 
   const SQL= 'INSERT INTO books (title,authors,isbn,url,description) VALUES ($1,$2,$3,$4,$5);'
   let {title,authors,isbn,url,description}=request.body;
   let values=[title,authors,isbn,url,description];
-  console.log('values : ', values);
+  // console.log('values : ', values);
 
     client.query(SQL,values)
     .then(results => {
-      console.log('results2 : ', results.rows);
+      // console.log('results2 : ', results.rows);
       response.redirect('/');
     })
 
