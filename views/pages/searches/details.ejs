@@ -20,18 +20,28 @@
 
                 </ul>
                 <div>
-              <form action="/update" method="GET"> 
-
-                <input type="hidden" name="title" value=<%= data.title %>>
-                <input type="hidden" name="authors" value=<%= data.authors %>>
-                <input type="hidden" name="isbn" value=<%= data.isbn %>>
-                <input type="hidden" name="imgURL" value=<%= data.url %>>
-                <input type="hidden" name="description" value=<%= data.description %>>
+              <form action="/update/<%= data.id%>" method="POST"> 
+                <input type="hidden" name="_method" value="put">
+                <input type="text" name="title" value=<%= data.title %>>
+                <input type="text" name="authors" value=<%= data.authors %>>
+                <input type="text" name="isbn" value=<%= data.isbn %>>
+                <input type="text" name="imgURL" value=<%= data.url %>>
+                <input type="text" name="description" value=<%= data.description %>>
                 <button>update</button>
                </div>
 
             </form>
-                
+            <form action="/delete/<%= data.id%>" method="POST"> 
+                <input type="hidden" name="_method" value="delete">
+                <input type="text" name="title" value=<%= data.title %>>
+                <input type="text" name="authors" value=<%= data.authors %>>
+                <input type="text" name="isbn" value=<%= data.isbn %>>
+                <input type="text" name="imgURL" value=<%= data.url %>>
+                <input type="text" name="description" value=<%= data.description %>>
+                <button>delete</button>
+               </div>
+
+            </form>
 
             </div>
             

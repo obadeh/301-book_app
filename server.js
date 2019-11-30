@@ -6,10 +6,24 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 const superagent=require('superagent');
 const pg = require('pg');
+const methodOverride=require('method-override')
 app.use( express.json() );
 app.use( express.urlencoded({extended:true}));
 app.use( express.static('./public/../') );
 app.set('view engine' ,'ejs')
+
+
+
+// Middleware to handle PUT and DELETE
+app.use(methodOverride((request, response) => {
+  if (request.body && typeof request.body === 'object' && '_method' in request.body) {
+    // look in urlencoded POST bodies and delete it
+    let method = request.body._method;
+    delete request.body._method;
+    return method;
+  }
+}))
+
 
 // Database Connection Setup
 const client = new pg.Client(process.env.DATABASE_URL);
@@ -39,11 +53,33 @@ app.get('/books/:book_id', (request, response) =>{
     // .catch(err => errorHandler(err, response));
 });
 
-// app.get('/update'(request,response)=>{
+app.put('/update/:book_id',(request,response)=>{
 
-//   req
+  let {title, authors, isbn, imgURL, description} = request.body;
+  // need SQL to update the specific task that we were on
+  let SQL = `UPDATE books SET title=$1, authors=$2, isbn=$3, url=$4, description=$5 WHERE id=$6;`;
+  // use request.params.task_id === whatever task we were on
+  let values = [title, authors, isbn, imgURL, description, request.params.book_id];
 
-// })
+  client.query(SQL, values)
+    .then(response.redirect(`/books/${request.params.book_id}`))
+    // .catch(err => errorHandler(err, response));
+
+})
+
+
+app.delete('/delete/:book_id',(request,response)=>{
+
+  // need SQL to update the specific task that we were on
+  let SQL = `DELETE FROM books WHERE id=$1;`;
+  // use request.params.task_id === whatever task we were on
+  let values = [request.params.book_id];
+
+  client.query(SQL, values)
+    .then(response.redirect('/'))
+    // .catch(err => errorHandler(err, response));
+
+})
 
 
 
@@ -63,6 +99,8 @@ function showFromDb(request,response){
 
 function showSelectedBook(request, response){
   let {title, authors, isbn, imgURL, description} = request.body;
+  console.log('description : ', description);
+  console.log('title : ', title);
   // console.log('\n\n\n\n\n\n\n',title, authors, isbn, imgURL, description);
   response.render('pages/selectedBook', {book:request.body})
 }

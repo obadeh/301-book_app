@@ -6,7 +6,7 @@ CREATE TABLE books (
     authors VARCHAR(256),
     isbn VARCHAR(256),
     url VARCHAR(256),
-    description VARCHAR(256)
+    description text
 
 );
 
